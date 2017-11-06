@@ -3,6 +3,7 @@ NAME =	my_ftl
 SRC =	my_putchar.c	\
 	my_put_nbr.c	\
 	my_putstr.c	\
+	my_strdup.c	\
 	readline.c	\
 	air_shed.c	\
 	ftl.h		\
