@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Mon Oct 23 11:01:24 2017 POITREAU Julien
-** Last update Sat Nov  4 17:36:41 2017 POITREAU Julien
+** Last update Sat Nov  4 18:50:06 2017 POITREAU Julien
 */
 
 #include <stdio.h>
@@ -25,5 +25,6 @@ char	*my_strdup(char *str)
       new_str[counter] = str[counter];
       counter++;
     }
+  new_str[counter] = '\0';
   return (new_str);
 }

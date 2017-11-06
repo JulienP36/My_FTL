@@ -6,6 +6,7 @@ SRC =	my_putchar.c	\
 	my_strdup.c	\
 	readline.c	\
 	air_shed.c	\
+	container.c	\
 	ftl.h		\
 	main.c
 OBJ =	$(SRC:%.c=%.o)
