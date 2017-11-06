@@ -5,15 +5,19 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 16:37:18 2017 POITREAU Julien
-** Last update Sat Nov  4 16:54:24 2017 POITREAU Julien
+** Last update Sat Nov  4 17:59:09 2017 POITREAU Julien
 */
 
 #include "ftl.h"
 
 t_ship	*create_ship();
+int	add_weapon_to_ship(t_ship p_ship);
 
-int	main()
+int		main()
 {
-  create_ship();
+  t_ship	*ptr_ship;
+  ptr_ship = create_ship();
+  add_weapon_to_ship(*ptr_ship);
+  
   return (0);
 }
