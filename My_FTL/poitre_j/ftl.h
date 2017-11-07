@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:11:54 2017 POITREAU Julien
-** Last update Tue Nov  7 14:08:43 2017 POITREAU Julien
+** Last update Tue Nov  7 20:10:18 2017 POITREAU Julien
 */
 
 #ifndef FTL_H
@@ -14,13 +14,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	my_putchar(char c);
-void	my_putstr(char *str);
+void	my_putchar(const char c);
+void	my_putstr(const char *str);
 void	my_put_nbr(int n);
-char	*my_strdup(char *str);
+char	*my_strdup(const char *str);
 char	*readLine();
-int	my_strcmp(char *s1, char *s2);
-int	my_strlen(char *str);
+int	my_strcmp(const char *s1, const char *s2);
+int	my_strlen(const char *str);
+void	my_putstr_color(const char *color, const char *str);
 
 typedef struct	s_weapon
 {

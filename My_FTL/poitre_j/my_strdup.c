@@ -5,17 +5,17 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Mon Oct 23 11:01:24 2017 POITREAU Julien
-** Last update Tue Nov  7 10:22:33 2017 POITREAU Julien
+** Last update Tue Nov  7 20:08:09 2017 POITREAU Julien
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void	my_putchar(char c);
+void	my_putchar(const char c);
 
-int	my_strlen(char *str);
+int	my_strlen(const char *str);
 
-char	*my_strdup(char *str)
+char	*my_strdup(const char *str)
 {
   char	*new_str;
   int	counter;
