@@ -5,12 +5,12 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Thu Oct 19 14:32:36 2017 POITREAU Julien
-** Last update Thu Oct 19 22:11:18 2017 POITREAU Julien
+** Last update Tue Nov  7 20:05:15 2017 POITREAU Julien
 */
 
-void	my_putchar(char c);
+void	my_putchar(const char c);
 
-int	my_strcmp(char *s1, char *s2)
+int	my_strcmp(const char *s1, const char *s2)
 {
   int	counter;
 
