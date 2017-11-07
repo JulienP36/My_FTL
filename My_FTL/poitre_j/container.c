@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Mon Nov  6 20:07:28 2017 POITREAU Julien
-** Last update Mon Nov  6 21:00:34 2017 POITREAU Julien
+** Last update Tue Nov  7 10:10:09 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -33,7 +33,7 @@ int		add_container_to_ship(t_ship *ptr_ship)
   return (1);
 }
 
-void	del_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
+void	add_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
 {
   if (ptr_freight != NULL)
     {
@@ -58,7 +58,7 @@ void	del_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
     }
 }
 
-void	add_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
+void	del_freight_from_container(t_ship *ptr_ship, t_freight *ptr_freight)
 {
   if (ptr_freight != NULL)
     {
@@ -76,7 +76,7 @@ void	add_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
 	    }
 	  else if (ptr_ship->container->last == ptr_freight)
 	    {
-	      ptr_freight->next->next = NULL;
+	      ptr_freight->prev->next = NULL;
 	      ptr_ship->container->last = ptr_freight->prev;
 	    }
 	  else
@@ -96,5 +96,24 @@ void	add_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
 
 void	get_bonus(t_ship *ptr_ship)
 {
+  t_freight	*current;
 
+  current = ptr_ship->container->first;
+  while (current != NULL)
+    {
+      if (my_strcmp(current->item, "attackbonus") == 0)
+	{
+	  ptr_ship->weapon->damage += 5;
+	}
+      else if (my_strcmp(current->item, "evadebonus") == 0)
+	{
+	  ptr_ship->nav_tools->evade += 3;
+	}
+      else if (my_strcmp(current->item, "energy") == 0)
+	{
+	  ptr_ship->ftl_drive->energy += 1;
+	}
+      del_freight_from_container(ptr_ship, current);
+      current = ptr_ship->container->first;
+    }
 }
