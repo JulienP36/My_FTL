@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:11:54 2017 POITREAU Julien
-** Last update Tue Nov  7 20:10:18 2017 POITREAU Julien
+** Last update Wed Nov  8 10:38:45 2017 POITREAU Julien
 */
 
 #ifndef FTL_H
@@ -57,6 +57,12 @@ typedef struct	s_container
   int		nb_elem;
 } t_container;
 
+typedef struct	s_ennemy
+{
+  int		healh;
+  int		damage;
+} t_ennemy;
+
 typedef struct		s_ship
 {
   int			hull;
@@ -82,5 +88,8 @@ void	ftl_drive_system_repair(t_ship *ptr_ship);
 void	navigation_tools_system_repair(t_ship *ptr_ship);
 void	weapon_system_repair(t_ship *ptr_ship);
 void	system_repair(t_ship *ptr_ship);
+void	basic_display(t_ship *ptr_ship);
+void	stats_display(t_ship *ptr_ship);
+void	command_check(t_ship *ptr_ship, char *choice);
 
 #endif
