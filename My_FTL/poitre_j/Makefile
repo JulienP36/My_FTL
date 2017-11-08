@@ -13,6 +13,8 @@ SRC =	my_putchar.c		\
 	system_control.c	\
 	system_repair.c		\
 	ftl.h			\
+	loop_choices.c		\
+	command_check.c		\
 	main.c
 OBJ =	$(SRC:%.c=%.o)
 RM =	rm -f
