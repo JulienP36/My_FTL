@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:50:01 2017 POITREAU Julien
-** Last update Wed Nov  8 13:24:30 2017 POITREAU Julien
+** Last update Wed Nov  8 13:42:04 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -20,25 +20,25 @@ void	battle_display(t_ship *ptr_ship)
       random = ((rand() % 100) + 1);
       if (random >= ptr_ship->nav_tools->evade)
 	{
-	  my_putstr_color("red", "\nVous avez recu les tirs ennemis!");
+	  my_putstr_color("red", "\nVous avez recu les tirs ennemis!\n");
 	  ptr_ship->hull -= ptr_ship->ennemy->damage;
 	  srand(time(NULL));
 	  random = ((rand() % 100) + 1);
 	  if (random <= 7)
 	    {
 	      my_putstr_color("yellow", "\nVotre systeme d'armement ");
-	      my_putstr_color("yellow", "est en panne!");
+	      my_putstr_color("yellow", "est en panne!\n");
 	      ptr_ship->weapon->system_state = my_strdup("offline");
 	    }
 	  else if (random <= 14)
 	    {
-	      my_putstr_color("yellow", "\nVotre reacteur est en panne!");
+	      my_putstr_color("yellow", "\nVotre reacteur est en panne!\n");
 	      ptr_ship->ftl_drive->system_state = my_strdup("offline");
 	    }
 	  else if (random <= 20)
 	    {
 	      my_putstr_color("yellow", "\nVos outils de navigation ");
-	      my_putstr_color("yellow", "sont  en panne!");
+	      my_putstr_color("yellow", "sont  en panne!\n");
 	      ptr_ship->nav_tools->system_state = my_strdup("offline");
 	    }
 	}
