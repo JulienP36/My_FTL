@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Wed Nov  8 13:15:48 2017 POITREAU Julien
+** Last update Wed Nov  8 13:41:39 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -66,19 +66,24 @@ void		change_area(t_ship *ptr_ship)
 
 void		fire_on_ennemy(t_ship *ptr_ship)
 {
-  ptr_ship->ennemy->health -= ptr_ship->weapon->damage;
-  if (ptr_ship->ennemy->health <= 0)
+  if (ptr_ship->fight->engaged == 1)
     {
-      my_putstr_color("green", "Le vaisseau ennemi est detruit !");
-      ptr_ship->fight->engaged = 0;
-      ptr_ship->next_ennemy->health += (ptr_ship->next_ennemy->health / 2);
-      ptr_ship->next_ennemy->damage += (ptr_ship->next_ennemy->damage / 2);
-      ptr_ship->ennemy->health = ptr_ship->next_ennemy->health;
-      ptr_ship->ennemy->damage = ptr_ship->next_ennemy->damage;
+      ptr_ship->ennemy->health -= ptr_ship->weapon->damage;
+      if (ptr_ship->ennemy->health <= 0)
+	{
+	  my_putstr_color("green", "\nLe vaisseau ennemi est detruit !\n");
+	  ptr_ship->fight->engaged = 0;
+	  ptr_ship->next_ennemy->health += (ptr_ship->next_ennemy->health / 2);
+	  ptr_ship->next_ennemy->damage += (ptr_ship->next_ennemy->damage / 2);
+	  ptr_ship->ennemy->health = ptr_ship->next_ennemy->health;
+	  ptr_ship->ennemy->damage = ptr_ship->next_ennemy->damage;
+	}
+      else
+	{
+	  ptr_ship->fight->turn_done = 1;
+	  battle_display(ptr_ship);
+	}
     }
   else
-    {
-      ptr_ship->fight->turn_done = 1;
-      battle_display(ptr_ship);
-    }
+    my_putstr_color("green", "\nIl n'y a pas d'ennemi dans la zone !\n");
 }
