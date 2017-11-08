@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:11:54 2017 POITREAU Julien
-** Last update Wed Nov  8 13:15:17 2017 POITREAU Julien
+** Last update Wed Nov  8 22:06:06 2017 POITREAU Julien
 */
 
 #ifndef FTL_H
@@ -99,6 +99,7 @@ int	add_weapon_to_ship(t_ship *ptr_ship);
 int	add_ftl_drive_to_ship(t_ship *ptr_ship);
 int	add_navigation_tools_to_ship(t_ship *ptr_ship);
 int	add_container_to_ship(t_ship *ptr_ship);
+void	add_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight);
 int	add_misc(t_ship *ptr_ship);
 void	system_control(t_ship *ptr_ship);
 void	ftl_drive_system_repair(t_ship *ptr_ship);

@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Mon Nov  6 20:07:28 2017 POITREAU Julien
-** Last update Tue Nov  7 10:10:09 2017 POITREAU Julien
+** Last update Wed Nov  8 22:04:08 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -37,18 +37,19 @@ void	add_freight_to_container(t_ship *ptr_ship, t_freight *ptr_freight)
 {
   if (ptr_freight != NULL)
     {
-      ptr_freight->next = NULL;
-      if (ptr_ship->container->last == NULL)
+      if (ptr_ship->container->nb_elem == 0)
 	{
 	  ptr_freight->prev = NULL;
+	  ptr_freight->next = NULL;
 	  ptr_ship->container->first = ptr_freight;
-	  ptr_ship->container->last = ptr_freight;
+	  ptr_ship->container->last = ptr_freight;	  
 	}
       else
 	{
-	  ptr_ship->container->last->next = ptr_freight;
 	  ptr_freight->prev = ptr_ship->container->last;
-	  ptr_ship->container->last = ptr_ship->container->last->next;
+	  ptr_ship->container->last->next = ptr_freight;
+	  ptr_freight->next = NULL;
+	  ptr_ship->container->last = ptr_freight;
 	}
       ptr_ship->container->nb_elem++;
     }
@@ -62,7 +63,7 @@ void	del_freight_from_container(t_ship *ptr_ship, t_freight *ptr_freight)
 {
   if (ptr_freight != NULL)
     {
-      if ((ptr_ship->container->last == ptr_freight) && (ptr_ship->container->first == ptr_freight))
+      if (ptr_ship->container->last == ptr_ship->container->first)
 	{
 	  ptr_ship->container->first = NULL;
 	  ptr_ship->container->last = NULL;
@@ -101,6 +102,14 @@ void	get_bonus(t_ship *ptr_ship)
   current = ptr_ship->container->first;
   while (current != NULL)
     {
+      my_putchar('\n');
+      my_putstr(current->item);
+      current = current->next;
+    }
+  while (current != NULL)
+    {
+      my_putchar('\n');
+      my_putstr(current->item);
       if (my_strcmp(current->item, "attackbonus") == 0)
 	{
 	  ptr_ship->weapon->damage += 5;
