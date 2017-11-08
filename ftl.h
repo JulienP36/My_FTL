@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:11:54 2017 POITREAU Julien
-** Last update Wed Nov  8 10:38:45 2017 POITREAU Julien
+** Last update Wed Nov  8 13:15:17 2017 POITREAU Julien
 */
 
 #ifndef FTL_H
@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void	my_putchar(const char c);
 void	my_putstr(const char *str);
@@ -59,9 +60,21 @@ typedef struct	s_container
 
 typedef struct	s_ennemy
 {
-  int		healh;
+  int		health;
   int		damage;
 } t_ennemy;
+
+typedef struct	s_next_ennemy
+{
+  int		health;
+  int		damage;
+} t_next_ennemy;
+
+typedef struct	s_fight
+{
+  int		engaged;
+  int		turn_done;
+} t_fight;
 
 typedef struct		s_ship
 {
@@ -70,6 +83,9 @@ typedef struct		s_ship
   t_ftl_drive		*ftl_drive;
   t_navigation_tools	*nav_tools;
   t_container		*container;
+  t_fight		*fight;
+  t_ennemy		*ennemy;
+  t_next_ennemy		*next_ennemy;
 } t_ship;
 
 typedef struct	s_repair_command
@@ -83,6 +99,7 @@ int	add_weapon_to_ship(t_ship *ptr_ship);
 int	add_ftl_drive_to_ship(t_ship *ptr_ship);
 int	add_navigation_tools_to_ship(t_ship *ptr_ship);
 int	add_container_to_ship(t_ship *ptr_ship);
+int	add_misc(t_ship *ptr_ship);
 void	system_control(t_ship *ptr_ship);
 void	ftl_drive_system_repair(t_ship *ptr_ship);
 void	navigation_tools_system_repair(t_ship *ptr_ship);
@@ -90,6 +107,8 @@ void	weapon_system_repair(t_ship *ptr_ship);
 void	system_repair(t_ship *ptr_ship);
 void	basic_display(t_ship *ptr_ship);
 void	stats_display(t_ship *ptr_ship);
+void	battle_display(t_ship *ptr_ship);
 void	command_check(t_ship *ptr_ship, char *choice);
+void	get_bonus(t_ship *ptr_ship);
 
 #endif

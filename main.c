@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 16:37:18 2017 POITREAU Julien
-** Last update Wed Nov  8 10:27:34 2017 POITREAU Julien
+** Last update Wed Nov  8 13:14:42 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -39,6 +39,7 @@ int		main()
   ptr_ship = malloc(sizeof(t_ship));
   ptr_ship = create_ship();
   add_things_to_ship(ptr_ship);
+  add_misc(ptr_ship);
   system_control(ptr_ship);
   my_putstr("\nAppuyez sur ENTER pour continuer...\n");
   readLine();
