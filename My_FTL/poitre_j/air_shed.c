@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:37:24 2017 POITREAU Julien
-** Last update Tue Nov  7 20:17:48 2017 POITREAU Julien
+** Last update Wed Nov  8 13:05:33 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -98,5 +98,26 @@ int	add_navigation_tools_to_ship(t_ship *ptr_ship)
       p_navigation_tools->system_state = my_strdup("online");
       ptr_ship->nav_tools = p_navigation_tools;
     }
+  return (1);
+}
+
+int		add_misc(t_ship *ptr_ship)
+{
+  t_ennemy	*p_ennemy;
+  t_next_ennemy *p_next_ennemy;;
+  t_fight	*p_fight;
+
+  p_ennemy = malloc(sizeof(t_ennemy));
+  p_next_ennemy = malloc(sizeof(t_next_ennemy));
+  p_fight = malloc(sizeof(t_fight));
+  p_ennemy->damage = 10;
+  p_ennemy->health = 20;
+  p_next_ennemy->damage = 10;
+  p_next_ennemy->health = 20;
+  p_fight->engaged = 0;
+  p_fight->turn_done = 0;
+  ptr_ship->fight = p_fight;
+  ptr_ship->ennemy = p_ennemy;
+  ptr_ship->next_ennemy = p_next_ennemy;
   return (1);
 }
