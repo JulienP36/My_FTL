@@ -15,6 +15,8 @@ SRC =	my_putchar.c		\
 	ftl.h			\
 	loop_choices.c		\
 	command_check.c		\
+	create_freight.c	\
+	get_containers.c	\
 	main.c
 OBJ =	$(SRC:%.c=%.o)
 RM =	rm -f

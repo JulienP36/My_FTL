@@ -5,10 +5,12 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:50:01 2017 POITREAU Julien
-** Last update Wed Nov  8 17:23:35 2017 POITREAU Julien
+** Last update Thu Nov  9 11:05:21 2017 POITREAU Julien
 */
 
 #include "ftl.h"
+
+void	random_shooting(t_ship *ptr_ship);
 
 void	battle_display(t_ship *ptr_ship)
 {
@@ -18,25 +20,11 @@ void	battle_display(t_ship *ptr_ship)
     {
       srand(time(NULL));
       random = ((rand() % 100) + 1);
-      if (random >= ptr_ship->nav_tools->evade) {
+      if (random >= ptr_ship->nav_tools->evade)
+	{
 	  my_putstr_color("red", "\nVous avez recu les tirs ennemis!\n");
 	  ptr_ship->hull -= ptr_ship->ennemy->damage;
-	  srand(time(NULL));
-	  random = ((rand() % 100) + 1);
-	  if (random <= 7) {
-	      my_putstr_color("yellow", "\nVotre systeme d'armement ");
-	      my_putstr_color("yellow", "est en panne!\n");
-	      ptr_ship->weapon->system_state = my_strdup("offline");
-	    }
-	  else if (random <= 14) {
-	      my_putstr_color("yellow", "\nVotre reacteur est en panne!\n");
-	      ptr_ship->ftl_drive->system_state = my_strdup("offline");
-	    }
-	  else if (random <= 20) {
-	      my_putstr_color("yellow", "\nVos outils de navigation ");
-	      my_putstr_color("yellow", "sont  en panne!\n");
-	      ptr_ship->nav_tools->system_state = my_strdup("offline");
-	    }
+	  random_shooting(ptr_ship);
 	}
       else
 	my_putstr_color("green", "\nVous avez esquive les tirs ennemis!\n");
@@ -72,4 +60,28 @@ void	stats_display(t_ship *ptr_ship)
   my_putstr("\n|| Evade : ");
   my_put_nbr(ptr_ship->nav_tools->evade);
   my_putchar('\n');
+}
+
+void	random_shooting(t_ship *ptr_ship)
+{
+  int	random;
+
+  random = ((rand() % 100) + 1);
+  if (random <= 7)
+    {
+      my_putstr_color("yellow", "\nVotre systeme d'armement ");
+      my_putstr_color("yellow", "est en panne!\n");
+      ptr_ship->weapon->system_state = my_strdup("offline");
+    }
+  else if (random <= 14)
+    {
+      my_putstr_color("yellow", "\nVotre reacteur est en panne!\n");
+      ptr_ship->ftl_drive->system_state = my_strdup("offline");
+    }
+  else if (random <= 20)
+    {
+      my_putstr_color("yellow", "\nVos outils de navigation ");
+      my_putstr_color("yellow", "sont  en panne!\n");
+      ptr_ship->nav_tools->system_state = my_strdup("offline");
+    }  
 }

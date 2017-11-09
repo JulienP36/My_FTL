@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Mon Nov  6 20:07:28 2017 POITREAU Julien
-** Last update Wed Nov  8 22:04:08 2017 POITREAU Julien
+** Last update Thu Nov  9 12:00:42 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -100,29 +100,27 @@ void	get_bonus(t_ship *ptr_ship)
   t_freight	*current;
 
   current = ptr_ship->container->first;
-  while (current != NULL)
+  if (ptr_ship->fight->engaged == 0)
     {
-      my_putchar('\n');
-      my_putstr(current->item);
-      current = current->next;
+      if (current == NULL)
+	if (ptr_ship->nav_tools->sector < 10)
+	  my_putstr_color("yellow", "\nPas de bonus a appliquer!\n");
+      else
+	if (ptr_ship->nav_tools->sector < 10)
+	  my_putstr_color("green", "\nBonus appliques!\n");
+      while (current != NULL)
+	{
+	  if (my_strcmp(current->item, "attackbonus") == 0)
+	    ptr_ship->weapon->damage += 5;
+	  else if (my_strcmp(current->item, "evadebonus") == 0)
+	    ptr_ship->nav_tools->evade += 3;
+	  else if (my_strcmp(current->item, "energy") == 0)
+	    ptr_ship->ftl_drive->energy += 1;
+	  free(current->item);
+	  del_freight_from_container(ptr_ship, current);
+	  current = ptr_ship->container->first;
+	}
     }
-  while (current != NULL)
-    {
-      my_putchar('\n');
-      my_putstr(current->item);
-      if (my_strcmp(current->item, "attackbonus") == 0)
-	{
-	  ptr_ship->weapon->damage += 5;
-	}
-      else if (my_strcmp(current->item, "evadebonus") == 0)
-	{
-	  ptr_ship->nav_tools->evade += 3;
-	}
-      else if (my_strcmp(current->item, "energy") == 0)
-	{
-	  ptr_ship->ftl_drive->energy += 1;
-	}
-      del_freight_from_container(ptr_ship, current);
-      current = ptr_ship->container->first;
-    }
+  else if (ptr_ship->nav_tools->sector < 10)
+    my_putstr_color("yellow", "\nCe n'est pas le moment! Au combat!\n");
 }
