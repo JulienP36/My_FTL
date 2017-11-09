@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Thu Nov  9 11:16:30 2017 POITREAU Julien
+** Last update Thu Nov  9 22:54:50 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -31,6 +31,8 @@ void		command_check(t_ship *ptr_ship, char *choice)
     detect_container(ptr_ship);
   else if (my_strcmp(choice, "attack") == 0)
     fire_on_ennemy(ptr_ship);
+  else if (my_strcmp(choice, "exit") == 0)
+    ptr_ship->nav_tools->sector = 10;
   else if (my_strcmp(choice, "help") == 0)
     {
       my_putstr("\n[Liste des commandes]:\n||:attack\n||:detect\n||:jump\n");
