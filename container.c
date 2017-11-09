@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Mon Nov  6 20:07:28 2017 POITREAU Julien
-** Last update Thu Nov  9 12:00:42 2017 POITREAU Julien
+** Last update Thu Nov  9 14:06:03 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -95,6 +95,32 @@ void	del_freight_from_container(t_ship *ptr_ship, t_freight *ptr_freight)
     }
 }
 
+void	determine_bonus(t_ship *ptr_ship, t_freight *current)
+{
+  if (current == NULL)
+    {
+      if (ptr_ship->nav_tools->sector < 10)
+	my_putstr_color("yellow", "\nPas de bonus a appliquer!\n");
+    }
+  else
+    {
+      if (ptr_ship->nav_tools->sector < 10)
+	my_putstr_color("green", "\nBonus appliques!\n");
+    }
+  while (current != NULL)
+    {
+      if (my_strcmp(current->item, "attackbonus") == 0)
+	ptr_ship->weapon->damage += 5;
+      else if (my_strcmp(current->item, "evadebonus") == 0)
+	ptr_ship->nav_tools->evade += 3;
+      else if (my_strcmp(current->item, "energy") == 0)
+	ptr_ship->ftl_drive->energy += 1;
+      free(current->item);
+      del_freight_from_container(ptr_ship, current);
+      current = ptr_ship->container->first;
+    }
+}
+
 void	get_bonus(t_ship *ptr_ship)
 {
   t_freight	*current;
@@ -102,24 +128,7 @@ void	get_bonus(t_ship *ptr_ship)
   current = ptr_ship->container->first;
   if (ptr_ship->fight->engaged == 0)
     {
-      if (current == NULL)
-	if (ptr_ship->nav_tools->sector < 10)
-	  my_putstr_color("yellow", "\nPas de bonus a appliquer!\n");
-      else
-	if (ptr_ship->nav_tools->sector < 10)
-	  my_putstr_color("green", "\nBonus appliques!\n");
-      while (current != NULL)
-	{
-	  if (my_strcmp(current->item, "attackbonus") == 0)
-	    ptr_ship->weapon->damage += 5;
-	  else if (my_strcmp(current->item, "evadebonus") == 0)
-	    ptr_ship->nav_tools->evade += 3;
-	  else if (my_strcmp(current->item, "energy") == 0)
-	    ptr_ship->ftl_drive->energy += 1;
-	  free(current->item);
-	  del_freight_from_container(ptr_ship, current);
-	  current = ptr_ship->container->first;
-	}
+      determine_bonus(ptr_ship, current);
     }
   else if (ptr_ship->nav_tools->sector < 10)
     my_putstr_color("yellow", "\nCe n'est pas le moment! Au combat!\n");
