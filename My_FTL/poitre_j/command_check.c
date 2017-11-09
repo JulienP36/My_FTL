@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Wed Nov  8 21:55:19 2017 POITREAU Julien
+** Last update Thu Nov  9 11:16:30 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -48,6 +48,7 @@ void		change_area(t_ship *ptr_ship)
       if (ptr_ship->fight->engaged != 1)
 	{
 	  ptr_ship->nav_tools->sector++;
+	  ptr_ship->ftl_drive->energy--;
 	  my_putstr_color("cyan", "\nChangement de zone...\n"); 
 	  if (((rand() % 100) + 1) <= 30)
 	    {
@@ -60,7 +61,7 @@ void		change_area(t_ship *ptr_ship)
 	}
       else
 	{
-	  my_putstr_color("yellow", "\nVous ne pouvez pas vous enfuir du combat !\n");
+	  my_putstr_color("yellow", "\nVous ne pouvez pas fuir le combat !\n");
 	}
     }
   else
@@ -112,53 +113,22 @@ void		end_of_fight(t_ship *ptr_ship)
 void		detect_container(t_ship *ptr_ship)
 {
   static int	last_detect = -1;
-  int		random;
-  int		counter;
-  t_freight	*cur_item;
 
-  cur_item = malloc(sizeof(t_freight));
-  srand(time(NULL));
-  if (last_detect != ptr_ship->nav_tools->sector)
+  if (my_strcmp(ptr_ship->nav_tools->system_state, "online") == 0)
     {
-      last_detect = ptr_ship->nav_tools->sector;
-      counter = 0;
-      my_putstr_color("cyan", "\n[System]: Resultats de detection:");
-      while (counter < 10)
+      if (ptr_ship->fight->engaged == 0)
 	{
-	  random = (rand() % 100) + 1;
-	  if (random <= 70)
+	  if (last_detect != ptr_ship->nav_tools->sector)
 	    {
-	      my_putstr("\n||:Scrap");
-	      cur_item->item = my_strdup("scrap");
+	      last_detect = ptr_ship->nav_tools->sector;
+	      get_containers(ptr_ship);
 	    }
 	  else
-	    {
-	      random = (rand() % 100) + 1;
-	      if (random <= 33)
-		{
-		  my_putstr_color("cyan", "\n||:Container : energy!");
-		  cur_item->item = my_strdup("energy");
-		}
-	      else if (random <= 66)
-		{
-		  my_putstr_color("green", "\n||:Container : attackbonus!");
-		  cur_item->item = my_strdup("attackbonus");
-		}
-	      else if (random <= 99)
-		{
-		  my_putstr_color("cyan", "\n||:Container : evadebonus!");
-		  cur_item->item = my_strdup("evadebonus");
-		}
-	      else
-		{
-		  my_putstr("\n||:Container : scrap");
-		  cur_item->item = my_strdup("scrap");
-		}
-	    }
-	  add_freight_to_container(ptr_ship, cur_item);
-	  counter++;
+	    my_putstr_color("yellow", "\nVous avez deja detecte les objets\n");
 	}
+      else
+	my_putstr_color("yellow", "\nCe n'est pas le moment! Au combat!\n");
     }
   else
-    my_putstr_color("yellow", "\nVous avez deja detecte les objets\n");
+    my_putstr_color("yellow", "\nVos outils de navigation sont en panne!!\n");
 }
