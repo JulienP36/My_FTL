@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:50:01 2017 POITREAU Julien
-** Last update Fri Nov 10 17:41:09 2017 POITREAU Julien
+** Last update Fri Nov 10 19:23:13 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -30,7 +30,10 @@ void		battle_display(t_ship *ptr_ship, t_sdl *sdl)
 	  random_shooting(ptr_ship, sdl);
 	}
       else
-	my_putstr_color("green", "\nVous avez esquive les tirs ennemis!\n");
+	{
+	  sdl_ennemy_shoot_fail(sdl);
+	  my_putstr_color("green", "\nVous avez esquive les tirs ennemis!\n");
+	}
     }
 }
 
@@ -44,8 +47,8 @@ void		basic_display(t_ship *ptr_ship, t_sdl *sdl)
   my_putstr("__||");
   if (ptr_ship->fight->engaged == 1)
     {
-      pos.x = sdl->pos_ennemyship.x;
-      pos.y = sdl->pos_ennemyship.y;
+      pos.x = 600;
+      pos.y = 200;
       SDL_BlitSurface(sdl->ennemyship, NULL, sdl->window, &pos);
       my_putstr_color("red", "\n\nUn ennemi rebelle !");
       my_putstr("\n||[Ennemy] Hull : ");
@@ -109,19 +112,16 @@ void		sdl_basic_display(t_ship *ptr_ship, t_sdl *sdl)
     sdl->ftl_drive = IMG_Load("ftl_drive_on.png");
   if (my_strcmp(ptr_ship->weapon->system_state, "online") == 0)
     sdl->weapons = IMG_Load("weapon_on.png");
-  pos.x = sdl->back.x;
-  pos.y = sdl->back.y;
+  pos.x = 0;
+  pos.y = 0;
   SDL_BlitSurface(sdl->background, NULL, sdl->window, &pos);
-  pos.x = sdl->pos_ship.x;
-  pos.y = sdl->pos_ship.y;
+  pos.y = 200;
   SDL_BlitSurface(sdl->ship, NULL, sdl->window, &pos);
-  pos.x = sdl->pos_ftl_drive.x;
-  pos.y = sdl->pos_ftl_drive.y;
+  pos.x = 10;
+  pos.y = 500;
   SDL_BlitSurface(sdl->ftl_drive, NULL, sdl->window, &pos);
-  pos.x = sdl->pos_nav_tools.x;
-  pos.y = sdl->pos_nav_tools.y;
+  pos.x = 84;
   SDL_BlitSurface(sdl->nav_tools, NULL, sdl->window, &pos);
-  pos.x = sdl->pos_weapons.x;
-  pos.y = sdl->pos_weapons.y;
+  pos.x = 158;
   SDL_BlitSurface(sdl->weapons, NULL, sdl->window, &pos);
 }

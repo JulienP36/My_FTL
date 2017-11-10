@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 16:37:18 2017 POITREAU Julien
-** Last update Fri Nov 10 16:49:31 2017 POITREAU Julien
+** Last update Fri Nov 10 19:24:01 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -61,18 +61,6 @@ t_sdl		*start_sdl()
   SDL_Rect	pos;
 
   sdl = malloc(sizeof(t_sdl));
-  sdl->pos_ship.x = 0;
-  sdl->pos_ship.y = 200;
-  sdl->pos_ennemyship.x = 600;
-  sdl->pos_ennemyship.y = 200;
-  sdl->back.x = 0;
-  sdl->back.y = 0;
-  sdl->pos_ftl_drive.x = 10;
-  sdl->pos_ftl_drive.y = 500;
-  sdl->pos_nav_tools.x = 84;
-  sdl->pos_nav_tools.y = 500;
-  sdl->pos_weapons.x = 158;
-  sdl->pos_weapons.y = 500;
   sdl->weapons = IMG_Load("weapon_on.png");
   sdl->nav_tools = IMG_Load("nav_tools_on.png");
   sdl->ftl_drive = IMG_Load("ftl_drive_on.png");
@@ -80,14 +68,13 @@ t_sdl		*start_sdl()
   sdl->laser = IMG_Load("laser.png");
   sdl->ship = IMG_Load("Ship.png");
   sdl->background = IMG_Load("SpaceView.png");
+  sdl->boom = IMG_Load("boom.png");
   SDL_Init(SDL_INIT_VIDEO);
   sdl->window = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("My_FTL : Space Kiwi Edition", NULL);
-
-  pos.x = sdl->back.x;
-  pos.y = sdl->back.y;
+  pos.x = 0;
+  pos.y = 0;
   SDL_BlitSurface(sdl->background, NULL, sdl->window, &pos);
-  
   SDL_Flip(sdl->window);
   return (sdl);
 }

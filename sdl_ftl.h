@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Thu Nov  9 22:46:37 2017 POITREAU Julien
-** Last update Fri Nov 10 17:01:34 2017 POITREAU Julien
+** Last update Fri Nov 10 19:23:26 2017 POITREAU Julien
 */
 
 #ifndef SDL_FTL_H
@@ -21,12 +21,7 @@ typedef struct	s_sdl
   SDL_Surface	*nav_tools;
   SDL_Surface	*weapons;
   SDL_Surface	*laser;
-  SDL_Rect	pos_ship;
-  SDL_Rect	pos_ennemyship;
-  SDL_Rect	back;
-  SDL_Rect	pos_ftl_drive;
-  SDL_Rect	pos_nav_tools;
-  SDL_Rect	pos_weapons;
+  SDL_Surface	*boom;
 } t_sdl;
 
 #endif

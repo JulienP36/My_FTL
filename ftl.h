@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:11:54 2017 POITREAU Julien
-** Last update Fri Nov 10 17:41:37 2017 POITREAU Julien
+** Last update Fri Nov 10 20:30:46 2017 POITREAU Julien
 */
 
 #ifndef FTL_H
@@ -124,4 +124,6 @@ void	detect_container(t_ship *ptr_ship);
 void	sdl_jump(t_sdl *sdl);
 void	sdl_shoot(t_sdl *sdl);
 void	sdl_ennemy_shoot(t_sdl *sdl);
+void	sdl_ennemy_shoot_fail(t_sdl *sdl);
+void	sdl_explosion_me(t_sdl *sdl);
 #endif
