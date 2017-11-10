@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Thu Nov  9 22:46:37 2017 POITREAU Julien
-** Last update Fri Nov 10 19:23:26 2017 POITREAU Julien
+** Last update Fri Nov 10 22:25:26 2017 POITREAU Julien
 */
 
 #ifndef SDL_FTL_H
@@ -22,6 +22,7 @@ typedef struct	s_sdl
   SDL_Surface	*weapons;
   SDL_Surface	*laser;
   SDL_Surface	*boom;
+  SDL_Surface	*heal;
 } t_sdl;
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Fri Nov 10 20:59:32 2017 POITREAU Julien
+** Last update Fri Nov 10 22:43:00 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -18,7 +18,7 @@ void		command_check(t_ship *ptr_ship, char *choice, t_sdl *sdl)
   else if (my_strcmp(choice, "control_system") == 0)
     system_control(ptr_ship);
   else if (my_strcmp(choice, "repair_system") == 0)
-    system_repair(ptr_ship);
+    system_repair(ptr_ship, sdl);
   else if (my_strcmp(choice, "getbonus") == 0)
     get_bonus(ptr_ship);
   else if (my_strcmp(choice, "jump") == 0)
