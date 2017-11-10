@@ -13,6 +13,7 @@ SRC =	my_putchar.c		\
 	system_control.c	\
 	system_repair.c		\
 	ftl.h			\
+	sdl_actions.c		\
 	loop_choices.c		\
 	command_check.c		\
 	create_freight.c	\

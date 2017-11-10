@@ -5,16 +5,11 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Fri Nov 10 13:03:38 2017 POITREAU Julien
+** Last update Fri Nov 10 17:42:15 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
 #include	"sdl_ftl.h"
-
-void		change_area(t_ship *ptr_ship);
-void		fire_on_ennemy(t_ship *ptr_ship, t_sdl *sdl);
-void		end_of_fight(t_ship *ptr_ship);
-void		detect_container(t_ship *ptr_ship);
 
 void		command_check(t_ship *ptr_ship, char *choice, t_sdl *sdl)
 {
@@ -27,7 +22,7 @@ void		command_check(t_ship *ptr_ship, char *choice, t_sdl *sdl)
   else if (my_strcmp(choice, "getbonus") == 0)
     get_bonus(ptr_ship);
   else if (my_strcmp(choice, "jump") == 0)
-    change_area(ptr_ship);
+    change_area(ptr_ship, sdl);
   else if (my_strcmp(choice, "detect") == 0)
     detect_container(ptr_ship);
   else if (my_strcmp(choice, "attack") == 0)
@@ -43,7 +38,7 @@ void		command_check(t_ship *ptr_ship, char *choice, t_sdl *sdl)
     my_putstr_color("red", "[ERROR]: Commande inconnue\n");
 }
 
-void		change_area(t_ship *ptr_ship)
+void		change_area(t_ship *ptr_ship, t_sdl *sdl)
 {
   if (my_strcmp(ptr_ship->ftl_drive->system_state, "online") == 0)
     {
@@ -52,7 +47,8 @@ void		change_area(t_ship *ptr_ship)
 	{
 	  ptr_ship->nav_tools->sector++;
 	  ptr_ship->ftl_drive->energy--;
-	  my_putstr_color("cyan", "\nChangement de zone...\n"); 
+	  my_putstr_color("cyan", "\nChangement de zone...\n");
+	  sdl_jump(sdl);
 	  if (((rand() % 100) + 1) <= 30)
 	    {
 	      ptr_ship->fight->engaged = 1;
@@ -79,6 +75,7 @@ void		fire_on_ennemy(t_ship *ptr_ship, t_sdl *sdl)
     {
       if (ptr_ship->fight->engaged == 1)
 	{
+	  sdl_shoot(sdl);
 	  ptr_ship->ennemy->health -= ptr_ship->weapon->damage;
 	  if (ptr_ship->ennemy->health <= 0)
 	    {
