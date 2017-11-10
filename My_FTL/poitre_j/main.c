@@ -5,13 +5,11 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 16:37:18 2017 POITREAU Julien
-** Last update Fri Nov 10 21:15:04 2017 POITREAU Julien
+** Last update Fri Nov 10 21:51:57 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
 #include	"sdl_ftl.h"
-
-void		free_all(t_ship *ptr_ship);
 
 void		add_things_to_ship(t_ship *p_ship)
 {
@@ -78,13 +76,12 @@ int		main()
   pause = readLine();
   free(pause);
   game_loop(ptr_ship, sdl);
-  free_all(ptr_ship);
+  free_all(ptr_ship, sdl);
   return (0);
 }
 
-void		free_all(t_ship *ptr_ship)
+void		free_all(t_ship *ptr_ship, t_sdl *sdl)
 {
-  SDL_Quit();
   ptr_ship->fight->engaged = 0;
   get_bonus(ptr_ship);
   free(ptr_ship->weapon->system_state);
@@ -98,4 +95,15 @@ void		free_all(t_ship *ptr_ship)
   free(ptr_ship->fight);
   free(ptr_ship->container);
   free(ptr_ship);
+  SDL_FreeSurface(sdl->weapons);
+  SDL_FreeSurface(sdl->nav_tools);
+  SDL_FreeSurface(sdl->ftl_drive);
+  SDL_FreeSurface(sdl->ennemyship);
+  SDL_FreeSurface(sdl->laser);
+  SDL_FreeSurface(sdl->ship);
+  SDL_FreeSurface(sdl->background);
+  SDL_FreeSurface(sdl->boom);
+  SDL_FreeSurface(sdl->window);
+  free(sdl);
+  SDL_Quit();
 }
