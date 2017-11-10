@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Fri Nov 10 20:27:46 2017 POITREAU Julien
-** Last update Fri Nov 10 21:40:31 2017 POITREAU Julien
+** Last update Fri Nov 10 22:30:33 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -28,7 +28,6 @@ void		sdl_explosion_me(t_sdl *sdl)
       pos.x = 0;
       pos.y = 0;
       SDL_BlitSurface(sdl->background, NULL, sdl->window, &pos);
-      pos.x = 0;
       pos.y = 200;
       SDL_BlitSurface(sdl->ship, NULL, sdl->window, &pos);
       pos.x = 600;

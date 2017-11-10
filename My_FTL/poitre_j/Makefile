@@ -15,6 +15,7 @@ SRC =	my_putchar.c		\
 	ftl.h			\
 	sdl_actions.c		\
 	sdl_actions2.c		\
+	sdl_actions3.c		\
 	loop_choices.c		\
 	command_check.c		\
 	create_freight.c	\
