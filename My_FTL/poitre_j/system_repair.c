@@ -5,10 +5,11 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Tue Nov  7 11:14:56 2017 POITREAU Julien
-** Last update Tue Nov  7 13:57:33 2017 POITREAU Julien
+** Last update Fri Nov 10 13:33:49 2017 POITREAU Julien
 */
 
-#include "ftl.h"
+#include	"ftl.h"
+#include	"sdl_ftl.h"
 
 static const t_repair_command	repair_command[] =
   {

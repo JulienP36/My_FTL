@@ -21,9 +21,10 @@ SRC =	my_putchar.c		\
 OBJ =	$(SRC:%.c=%.o)
 RM =	rm -f
 CFLAGS = -W -Wall -Werror
+LDFLAGS = -lSDL -lSDL_image
 
 $(NAME)	:	$(OBJ)
-		$(CC) $(OBJ) -o $(NAME)
+		$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 all	:	$(NAME)
 

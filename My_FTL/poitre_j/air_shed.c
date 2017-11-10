@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:37:24 2017 POITREAU Julien
-** Last update Wed Nov  8 17:07:30 2017 POITREAU Julien
+** Last update Fri Nov 10 13:28:19 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -119,5 +119,6 @@ int		add_misc(t_ship *ptr_ship)
   ptr_ship->fight = p_fight;
   ptr_ship->ennemy = p_ennemy;
   ptr_ship->next_ennemy = p_next_ennemy;
+  ptr_ship->sdl = NULL;
   return (1);
 }
