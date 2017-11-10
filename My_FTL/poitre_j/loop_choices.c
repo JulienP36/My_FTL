@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:50:01 2017 POITREAU Julien
-** Last update Fri Nov 10 13:42:55 2017 POITREAU Julien
+** Last update Fri Nov 10 17:41:09 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -24,6 +24,7 @@ void		battle_display(t_ship *ptr_ship, t_sdl *sdl)
       random = ((rand() % 100) + 1);
       if (random >= ptr_ship->nav_tools->evade)
 	{
+	  sdl_ennemy_shoot(sdl);
 	  my_putstr_color("red", "\nVous avez recu les tirs ennemis!\n");
 	  ptr_ship->hull -= ptr_ship->ennemy->damage;
 	  random_shooting(ptr_ship, sdl);

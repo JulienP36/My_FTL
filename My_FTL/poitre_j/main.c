@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 16:37:18 2017 POITREAU Julien
-** Last update Fri Nov 10 13:06:11 2017 POITREAU Julien
+** Last update Fri Nov 10 16:49:31 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -77,8 +77,9 @@ t_sdl		*start_sdl()
   sdl->nav_tools = IMG_Load("nav_tools_on.png");
   sdl->ftl_drive = IMG_Load("ftl_drive_on.png");
   sdl->ennemyship = IMG_Load("EnnemyShip.png");
+  sdl->laser = IMG_Load("laser.png");
   sdl->ship = IMG_Load("Ship.png");
-  sdl->background = IMG_Load("SpaceView.png"); 
+  sdl->background = IMG_Load("SpaceView.png");
   SDL_Init(SDL_INIT_VIDEO);
   sdl->window = SDL_SetVideoMode(800, 600, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("My_FTL : Space Kiwi Edition", NULL);

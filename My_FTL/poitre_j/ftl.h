@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:11:54 2017 POITREAU Julien
-** Last update Fri Nov 10 13:18:30 2017 POITREAU Julien
+** Last update Fri Nov 10 17:41:37 2017 POITREAU Julien
 */
 
 #ifndef FTL_H
@@ -117,5 +117,11 @@ void	get_containers(t_ship *ptr_ship);
 void	basic_display(t_ship *ptr_ship, t_sdl *sdl);
 void	command_check(t_ship *ptr_ship, char *choice, t_sdl *sdl);
 void	battle_display(t_ship *ptr_ship, t_sdl *sdl);
-
+void	change_area(t_ship *ptr_ship, t_sdl *sdl);
+void	fire_on_ennemy(t_ship *ptr_ship, t_sdl *sdl);
+void	end_of_fight(t_ship *ptr_ship);
+void	detect_container(t_ship *ptr_ship);
+void	sdl_jump(t_sdl *sdl);
+void	sdl_shoot(t_sdl *sdl);
+void	sdl_ennemy_shoot(t_sdl *sdl);
 #endif
