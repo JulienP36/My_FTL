@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 16:37:18 2017 POITREAU Julien
-** Last update Fri Nov 10 19:24:01 2017 POITREAU Julien
+** Last update Fri Nov 10 21:15:04 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -35,23 +35,7 @@ void		game_loop(t_ship *ptr_ship, t_sdl *sdl)
       my_putstr("\nAppuyez sur ENTER pour continuer...");
       choice = readLine();
       free(choice);
-      if (ptr_ship->nav_tools->sector >= 10)
-	{
-	  my_putstr_color("cyan", "\nVous etes arrives a destination!\n");
-	  my_putstr_color("green", "\nVous avez gagne!\n\n");
-	}
-      else if (ptr_ship->hull <= 0)
-	{
-	  my_putstr_color("yellow", "\nVotre vaisseau est detruit!\n");
-	  my_putstr_color("red", "\nVous avez perdu!\n\n");
-	  ptr_ship->nav_tools->sector = 10;
-	}
-      else if (ptr_ship->ftl_drive->energy <= 0)
-	{
-	  my_putstr_color("yellow", "\nVotre vaisseau n'as plus d'energie!\n");
-	  my_putstr_color("red", "\nVous avez perdu!\n\n");
-	  ptr_ship->nav_tools->sector = 10;
-	}
+      game_over(ptr_ship, sdl);
     }
 }
 

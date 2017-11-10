@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Fri Nov 10 17:42:15 2017 POITREAU Julien
+** Last update Fri Nov 10 20:59:32 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
@@ -79,6 +79,9 @@ void		fire_on_ennemy(t_ship *ptr_ship, t_sdl *sdl)
 	  ptr_ship->ennemy->health -= ptr_ship->weapon->damage;
 	  if (ptr_ship->ennemy->health <= 0)
 	    {
+	      sdl_explosion(sdl);
+	      sdl_basic_display(ptr_ship, sdl);
+	      SDL_Flip(sdl->window);
 	      end_of_fight(ptr_ship);
 	    }
 	  else
