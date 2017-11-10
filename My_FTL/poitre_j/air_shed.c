@@ -5,7 +5,7 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Sat Nov  4 14:37:24 2017 POITREAU Julien
-** Last update Fri Nov 10 13:28:19 2017 POITREAU Julien
+** Last update Fri Nov 10 21:38:58 2017 POITREAU Julien
 */
 
 #include "ftl.h"
@@ -71,7 +71,7 @@ int	add_ftl_drive_to_ship(t_ship *ptr_ship)
   else
     {
       my_putstr("le reacteur a ete ajoute avec succes!\n");
-      p_ftl_drive->energy = 10;
+      p_ftl_drive->energy = 1;
       p_ftl_drive->system_state = my_strdup("online");
       ptr_ship->ftl_drive = p_ftl_drive;
     }
