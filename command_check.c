@@ -5,17 +5,18 @@
 ** Login   <poitre_j@etna-alternance.net>
 ** 
 ** Started on  Wed Nov  8 09:49:43 2017 POITREAU Julien
-** Last update Thu Nov  9 22:54:50 2017 POITREAU Julien
+** Last update Fri Nov 10 13:03:38 2017 POITREAU Julien
 */
 
 #include	"ftl.h"
+#include	"sdl_ftl.h"
 
 void		change_area(t_ship *ptr_ship);
-void		fire_on_ennemy(t_ship *ptr_ship);
+void		fire_on_ennemy(t_ship *ptr_ship, t_sdl *sdl);
 void		end_of_fight(t_ship *ptr_ship);
 void		detect_container(t_ship *ptr_ship);
 
-void		command_check(t_ship *ptr_ship, char *choice)
+void		command_check(t_ship *ptr_ship, char *choice, t_sdl *sdl)
 {
   if (my_strcmp(choice, "stat") == 0)
     stats_display(ptr_ship);
@@ -30,7 +31,7 @@ void		command_check(t_ship *ptr_ship, char *choice)
   else if (my_strcmp(choice, "detect") == 0)
     detect_container(ptr_ship);
   else if (my_strcmp(choice, "attack") == 0)
-    fire_on_ennemy(ptr_ship);
+    fire_on_ennemy(ptr_ship, sdl);
   else if (my_strcmp(choice, "exit") == 0)
     ptr_ship->nav_tools->sector = 10;
   else if (my_strcmp(choice, "help") == 0)
@@ -72,7 +73,7 @@ void		change_area(t_ship *ptr_ship)
     }
 }
 
-void		fire_on_ennemy(t_ship *ptr_ship)
+void		fire_on_ennemy(t_ship *ptr_ship, t_sdl *sdl)
 {
   if (my_strcmp(ptr_ship->weapon->system_state, "online") == 0)
     {
@@ -86,7 +87,7 @@ void		fire_on_ennemy(t_ship *ptr_ship)
 	  else
 	    {
 	      ptr_ship->fight->turn_done = 1;
-	      battle_display(ptr_ship);
+	      battle_display(ptr_ship, sdl);
 	    }
 	}
       else
