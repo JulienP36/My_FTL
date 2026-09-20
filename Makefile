@@ -12,7 +12,6 @@ SRC =	my_putchar.c		\
 	container.c		\
 	system_control.c	\
 	system_repair.c		\
-	ftl.h			\
 	sdl_actions.c		\
 	sdl_actions2.c		\
 	sdl_actions3.c		\

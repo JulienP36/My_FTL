@@ -1,0 +1,4 @@
+*.o
+my_ftl
+my_ftl.exe
+dist/

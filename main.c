@@ -9,6 +9,7 @@
 */
 
 #include	"ftl.h"
+#undef main
 #include	"sdl_ftl.h"
 
 void		add_things_to_ship(t_ship *p_ship)
