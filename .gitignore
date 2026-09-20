@@ -1,4 +1,5 @@
 *.o
+*.zip
 my_ftl
 my_ftl.exe
 dist/
